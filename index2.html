@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Site de Terror</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      padding-top: 100px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+
+    #jumpscare-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #jumpscare-gif {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+    <h1>I Always come back</h1>
+    <img src="fnaf.png" height=200>
+  <button id="jumpscare-btn">Clique aqui... se tiver coragem</button>
+
+  <div id="jumpscare-container">
+    <img id="jumpscare-gif" src="jumpscare.gif" alt="Springtrap Jumpscare">
+  </div>
+
+  <audio id="jumpscare-audio" src="jumpscare.mp3"></audio>
+
+  <script>
+    const btn = document.getElementById('jumpscare-btn');
+    const container = document.getElementById('jumpscare-container');
+    const audio = document.getElementById('jumpscare-audio');
+
+    // Ajuste do volume (vai de 0.0 a 1.0)
+    audio.volume = 0.9; // 90% de volume — você pode testar valores como 1.0 (máximo), 0.5 (metade), etc.
+
+    btn.addEventListener('click', () => {
+      container.style.display = 'flex'; // mostra o gif
+      audio.play(); // toca o som
+
+      // Depois de 3 segundos, esconde o jumpscare
+      setTimeout(() => {
+        container.style.display = 'none';
+        audio.pause();
+        audio.currentTime = 0;
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
